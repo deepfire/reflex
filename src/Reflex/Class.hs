@@ -213,21 +213,21 @@ class ( MonadHold t (PushM t)
       ) => Reflex t where
   -- | A container for a value that can change over time.  'Behavior's can be
   -- sampled at will, but it is not possible to be notified when they change
-  data Behavior t :: * -> *
+  data Behavior t x
   -- | A stream of occurrences.  During any given frame, an 'Event' is either
   -- occurring or not occurring; if it is occurring, it will contain a value of
   -- the given type (its "occurrence type")
-  data Event t :: * -> *
+  data Event t x
   -- | A container for a value that can change over time and allows
   -- notifications on changes.  Basically a combination of a 'Behavior' and an
   -- 'Event', with a rule that the 'Behavior' will change if and only if the
   -- 'Event' fires.
-  data Dynamic t :: * -> *
+  data Dynamic t x
   -- | An 'Incremental' is a more general form of  a 'Dynamic'.
   -- Instead of always fully replacing the value, only parts of it can be patched.
   -- This is only needed for performance critical code via `mergeIncremental` to make small
   -- changes to large values.
-  data Incremental t :: * -> *
+  data Incremental t x
   -- | A monad for doing complex push-based calculations efficiently
   type PushM t :: * -> *
   -- | A monad for doing complex pull-based calculations efficiently
